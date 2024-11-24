@@ -1,4 +1,4 @@
-package com.example.books.api;
+package com.example.users.api;
 
 import com.example.users.model.Book;
 import com.example.users.service.BookService;
@@ -12,35 +12,35 @@ import java.util.List;
 @RestController
 public class BookController {
 
-    private final BookService bookService;
-
-    @Autowired
-    public BookController(BookService bookService) {
-        this.bookService = bookService;
-    }
-
-    @GetMapping("/book")
-    public Book getBook(@RequestParam Integer id) {
-        Optional<Book> book = bookService.getBookById(id);
-
-        return  (Book) book.orElse(null);
-    }
-
-    @GetMapping("/allBooks")
-    public List<Book> getAllBooks() {
-        Optional<List<Book>> book = bookService.getAllBooks();
-
-        return  (List<Book>) book.orElse(null);
-    }
-
-    @PostMapping("/book")
-    public Book createBook(@RequestBody Book book) {
-
-        Optional<Book> newBook =
-               bookService.createBook(book.getName(), book.getRelease_date());
-
-        return (Book) newBook.orElse(null);
-    }
+//    private final BookService bookService;
+//
+//    @Autowired
+//    public BookController(BookService bookService) {
+//        this.bookService = bookService;
+//    }
+//
+//    @GetMapping("/book")
+//    public Book getBook(@RequestParam Integer id) {
+//        Book book = bookService.getBookById(id);
+//
+//        return  (Book) book;
+//    }
+//
+//    @GetMapping("/allBooks")
+//    public List<Book> getAllBooks() {
+//        Optional<List<Book>> book = bookService.getAllBooks();
+//
+//        return  (List<Book>) book.orElse(null);
+//    }
+//
+//    @PostMapping("/book")
+//    public Book createBook(@RequestBody Book book) {
+//
+//        Optional<Book> newBook =
+//               bookService.createBook(book.getName(), book.getRelease_date());
+//
+//        return (Book) newBook.orElse(null);
+//    }
 
 //    @PutMapping("/book")
 //    public Book editBook(@RequestBody Book book) {

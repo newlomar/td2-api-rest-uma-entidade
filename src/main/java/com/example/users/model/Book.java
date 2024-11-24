@@ -1,9 +1,28 @@
 package com.example.users.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "books")
 public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String release_date;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    private User user;
+
+    public Book (){}
 
     public Book(int id, String name, String release_date) {
         this.id = id;
@@ -29,11 +48,17 @@ public class Book {
 
     public void setName(String name) {
         this.name = name;
-
     }
 
     public void setRelease_date(String release_date) {
         this.release_date = release_date;
+    }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
